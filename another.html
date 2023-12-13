@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/main-page/fav-icon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Goblin+One&family=Merriweather&family=Montserrat&family=Oswald&family=Raleway&family=Syne:wght@700&display=swap"
+        rel="stylesheet">
+    <title>Blog Post Page</title>
+</head>
+
+<body class="bg-black">
+    <div class="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16 relative">
+        <div class="bg-cover bg-center text-center overflow-hidden"
+            style="min-height: 500px; background-image: url('anaan.png')" title="Woman holding a mug">
+        </div>
+        <div class="max-w-3xl mx-auto">
+            <div class="mt-3 bg-white rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal">
+                <div class="bg-white relative top-0 -mt-32 p-5 sm:p-10">
+                    <h1 class="text-black font-bold text-3xl mb-2 font-Oswald">Once a hacking: Gain visibility into your organizations</h1>
+                    <h2 class="font-semibold text-2xl text-black font-Raleway"></h2>
+                    <p class="text-gray-700 text-lg mt-2 font-Raleway">Hackers Arise was developed solely to help those who are interested in a career in cybersecurity. Here, you'll find tutorials on all forms of hacking, digital forensics, Linux, information security, and just about any subject related to cyber security.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-2xl mx-auto bg-white p-10 rounded-md">
+        <h1 class="text-3xl font-bold mb-4 font-Oswald text-center">Create a New Blog</h1>
+        <form id="blogPostForm" class="mb-8">
+            <div class="mb-4">
+                <label for="title" class="block text-black font-bold mb-2 font-Raleway">Title</label>
+                <input type="text" id="title" name="title"
+                    class="w-full px-3 py-2 border-b border-black bg-transparent outline-none" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-black font-bold mb-2 font-Raleway">Description</label>
+                <textarea id="description" name="description"
+                    class="w-full px-3 py-2 border-b border-black bg-transparent outline-none" rows="4" required></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="hashtag" class="block text-black font-bold mb-2 font-Raleway">Hashtag</label>
+                <input type="text" id="hashtag" name="hashtag"
+                    class="w-full px-3 py-2 border-b border-black bg-transparent outline-none" required>
+            </div>
+            <div class="mb-4">
+                <label for="author" class="block text-black font-bold mb-2 font-Raleway">Author</label>
+                <input type="text" id="author" name="author"
+                    class="w-full px-3 py-2 border-b border-black bg-transparent outline-none font-light" required>
+            </div>
+            <button type="submit"
+                class="bg-black text-white px-4 py-2 rounded-md hover:bg-slate-800 font-Raleway">Post</button>
+        </form>
+    </div>
+
+    <div class="flex items-center justify-center mx-auto bg-white p-10 mt-20 rounded-md md:max-w-4xl max-w-3xl">
+        <div class="text-3xl font-bold mb-4 text-center">
+            <h1 class="font-Oswald">Recent Blogs</h1>
+            <div id="blogPosts" class="space-y-7">
+                <!-- Display recent posts here -->
+            </div>
+        </div>
+    </div>
+    <section class="">
+      <footer class="bg-gray-800 text-white px-3 p-10 mt-10">
+        <div class="container mx-auto flex flex-wrap items-center justify-between">
+            <div class="w-full md:w-1/2 md:text-center text-center md:mb-0 mb-8">
+                <p class="text-xs text-gray-400 md:text-sm font-[Montserrat]">Copyright 2023 &copy; All Rights Reserved</p>
+            </div>
+            <div class="w-full md:w-1/2 md:text-center md:mb-0 mb-8">
+                <ul class="list-reset flex justify-center flex-wrap text-xs md:text-sm gap-3 ">
+    
+    
+                   <li><a href="index.html" class="text-gray-400 hover:text-white font-[Montserrat]">Home</a></li>
+    
+                    <li><a href="about.html" class="text-gray-400 hover:text-white font-[Montserrat]">About Us</a></li>
+    
+                    <li><a href="blog.html" class="text-gray-400 hover:text-white font-[Montserrat]">Blog</a></li>
+                    
+                    <li><a href="contact.html" class="text-gray-400 hover:text-white font-[Montserrat]">Contact Us</a></li>
+    
+                    <li><a href="services.html" class="text-gray-400 hover:text-white font-[Montserrat]">Services</a></li>
+    
+                </ul>
+            </div>
+        </div>
+    </footer>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const blogPostForm = document.getElementById('blogPostForm');
+            const blogPosts = document.getElementById('blogPosts');
+            let posts = JSON.parse(localStorage.getItem('blogPosts')) || [];
+
+            function renderPosts() {
+                blogPosts.innerHTML = '';
+                posts.forEach(post => {
+                    const postElement = document.createElement('div');
+                    postElement.classList.add('p-4', 'rounded-md');
+                    postElement.innerHTML = `
+                          <h2 class="text-4xl font-bold font-Montserrat text-left">${post.title}</h2>
+                          <p class="md:text-lg text-sm font-Raleway font-medium text-justify">${post.description}</p>
+                          <div class="flex items-left text-black gap-5">
+                              <span class=" text-lg font-light font-Raleway">#${post.hashtag}</span>
+                              <span class=" mr-20 text-lg font-light font-Raleway"">by ${post.author}</span>
+                          </div>
+                      `;
+                    blogPosts.appendChild(postElement);
+                });
+            }
+
+            renderPosts();
+
+            blogPostForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const title = this.title.value;
+                const description = this.description.value;
+                const hashtag = this.hashtag.value;
+                const author = this.author.value;
+
+                const newPost = {
+                    title,
+                    description,
+                    hashtag,
+                    author
+                };
+
+                posts.unshift(newPost);
+                localStorage.setItem('blogPosts', JSON.stringify(posts));
+                renderPosts();
+
+                // Clear the form fields
+                this.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+cdn.tailwindcss.com
